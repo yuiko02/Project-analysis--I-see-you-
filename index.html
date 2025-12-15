@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>te veo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      background: #000;
+      color: #00ff88;
+      font-family: monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .terminal {
+      border: 1px solid #00ff88;
+      padding: 20px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 0 20px rgba(0,255,136,0.3);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+      font-weight: normal;
+      letter-spacing: 2px;
+    }
+
+    .pista {
+      font-size: 13px;
+      opacity: 0.6;
+      margin-bottom: 15px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      background: black;
+      border: 1px solid #00ff88;
+      color: #00ff88;
+      font-family: monospace;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .error {
+      display: none;
+      margin-top: 10px;
+      color: #ff4444;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="terminal">
+    <h1>te veo</h1>
+
+    <div class="pista">
+      servicio especial de la fundación
+    </div>
+
+    <input
+      id="clave"
+      type="text"
+      placeholder="introducir clave"
+      autocomplete="off"
+    >
+
+    <div id="error" class="error">
+      clave incorrecta
+    </div>
+
+    <!-- AUDIO (solo cambia el archivo si quieres otro) -->
+    <audio id="audio" src="mensaje.mp3"></audio>
+  </div>
+
+  <script>
+    const CLAVE_CORRECTA = "B.A.R.E";
+
+    const input = document.getElementById("clave");
+    const error = document.getElementById("error");
+    const audio = document.getElementById("audio");
+
+    input.addEventListener("keydown", function(e) {
+      if (e.key === "Enter") {
+        if (input.value.trim().toUpperCase() === CLAVE_CORRECTA) {
+          error.style.display = "none";
+          audio.currentTime = 0;
+          audio.play();
+          input.value = "";
+        } else {
+          error.style.display = "block";
+        }
+      }
+    });
+  </script>
+</body>
+</html>
